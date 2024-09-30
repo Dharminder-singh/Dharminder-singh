@@ -78,11 +78,25 @@
     },
     "pop_up_products_j7qcHY": {
       "type": "pop-up-products",
+      "blocks": {
+        "product_hCmdFW": {
+          "type": "product",
+          "settings": {
+            "selected_product": "test-product"
+          }
+        },
+        "product_YCXRNC": {
+          "type": "product",
+          "settings": {
+            "selected_product": "test-product-copy"
+          }
+        }
+      },
+      "block_order": [
+        "product_hCmdFW",
+        "product_YCXRNC"
+      ],
       "settings": {
-        "selected_products": [
-          "test-product",
-          "test-product-copy"
-        ]
       }
     }
   },
