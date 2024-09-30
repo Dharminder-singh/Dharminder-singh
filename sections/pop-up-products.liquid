@@ -1,84 +1,38 @@
-{%- liquid
-  assign product = section.settings.product
-  if product == null
-    assign placeholder = true
-  endif
--%}
-
-<product-info
-  data-section="{{ section.id }}"
-  data-product-id="{{ product.id }}"
-  data-update-url="false"
-  data-url="{{ product.url }}"
-  {% if section.settings.image_zoom == 'hover' %}
-    data-zoom-on-hover
-  {% endif %}
->
-
-
-
-  {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-
-  <section>
-      <div class="pop-up-product" >
-        <div class="product imager">
-            {% render 'product-media-gallery', product: product, variant_images: variant_images, limit: 1 %}
-        </div>
-        <div class="product-info">
-            <div>
-                <div class="product-info-image">
-                {% render 'product-media-modal', product: product, variant_images: variant_images %}
-                </div>
-                <div class="info-context">
-                    <div class="product-title">
-                    <h2 class="product__title " >
-                    {%- unless placeholder -%}
-                      {{ product.title | escape }}
-                    {%- else -%}
-                      {{ 'onboarding.product_title' | t }}
-                    {%- endunless -%}
-                  </h2>
-                    </div>
-                    <div class="product-price">
-                   
-                    {%- render 'price',
-                      product: product,
-                      placeholder: placeholder,
-                      use_variant: true,
-                      show_badges: true,
-                      price_class: 'price--large'
-                    -%}
-                    </div>
-                    <div class="product-description">
-                    </div>
-                </div>
-            </div>
-            <div class="product-variants">
-            </div>
-            <div class="buy-now-button">
-            </div>
-        </div>
-      </div>
-  </section>
-
-</product-info>
-
 {% schema %}
 {
-  "name": "Popup Products",
-  "tag": "section", 
-  "class": "section section-featured-product",
-  "disabled_on": {
-    "groups": ["header", "footer"]
-  },
-  "blocks": [
-    {"type": "@app"},
+  "name": "Product List Selector",
+  "settings": [
     {
-      "type": "product",
-      "name": "product",
+      "type": "product_list",
+      "id": "selected_products",
+      "label": "Select Products",
+      "info": "Choose multiple products to display."
     }
   ],
   "presets": [
+    {
+      "name": "Product List Selector",
+      "category": "Custom"
+    }
   ]
 }
 {% endschema %}
+
+<div class="product-list-selector">
+  <h2>Selected Products</h2>
+  <ul>
+    {% for product in settings.selected_products %}
+      <li>
+        <a href="{{ product.url }}">
+          {{ product.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<style>
+.product-list-selector {
+  /* Add your styles here */
+}
+</style>
