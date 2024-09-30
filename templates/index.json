@@ -80,7 +80,8 @@
       "type": "pop-up-products",
       "settings": {
         "selected_products": [
-          "test-product"
+          "test-product",
+          "test-product-copy"
         ]
       }
     }
