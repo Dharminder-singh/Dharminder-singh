@@ -1,4 +1,4 @@
-
+{% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
 
 <div class="product-blocks">
   <h2>Selected Products</h2>
@@ -10,6 +10,9 @@
           <a href="{{ product.url }}">
             {{ product.title }}
           </a>
+          <div class="product-info-image">
+                {% render 'product-media-modal', product: product, variant_images: variant_images %}
+          {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}</div>
         </li>
       {% endif %}
     {% endfor %}
