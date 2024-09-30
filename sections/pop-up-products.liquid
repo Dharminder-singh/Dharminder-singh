@@ -1,23 +1,44 @@
 {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
 
-<div class="product-blocks">
-  <h2>Selected Products</h2>
-  <ul>
-    {% for block in section.blocks %}
-      {% assign product = block.settings.selected_product %}
-      {% if product %}
-        <li>
-          <a href="{{ product.url }}">
-            {{ product.title }}
-          </a>
-          <div class="product-info-image">
+<section class="pop-up-products">
+      <div class="pop-up-product" >
+        <div class="product-image">
+            {% render 'product-media-gallery', product: product, variant_images: variant_images, limit: 1 %}
+        </div>
+        <div class="product-info">
+            <div>
+                <div class="product-info-image">
                 {% render 'product-media-modal', product: product, variant_images: variant_images %}
-          {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}</div>
-        </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-</div>
+                </div>
+                <div class="info-context">
+    
+                    <h2 class="product-title}" >
+                      {{ product.title | escape }}
+                  </h2>
+                   
+                    <div class="product-price">
+                    
+                    {%- render 'price',
+                      product: product,
+                      placeholder: placeholder,
+                      use_variant: true,
+                      show_badges: true,
+                      price_class: 'price--large'
+                    -%}
+                  
+                    </div>
+                    <div class="product-description">
+                    </div>
+                </div>
+            </div>
+            <div class="product-variants">
+              
+            </div>
+            <div class="buy-now-button">
+            </div>
+        </div>
+      </div>
+  </section>
 
 <style>
 .product-list-selector {
