@@ -1,7 +1,9 @@
 {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
 
 <section class="pop-up-products">
-  {% for product in settings.selected_products %}
+  {% for block in section.blocks %}
+      {% assign product = block.settings.selected_product %}
+      {% if product %}
       <div class="pop-up-product" >
         <div class="product-image">
             {% render 'product-media-gallery', product: product, variant_images: variant_images, limit: 1 %}
@@ -39,7 +41,8 @@
             </div>
         </div>
       </div>
-    {% endfor %}
+   {% endif %}
+  {% endfor %}
   </section>
 
 <style>
