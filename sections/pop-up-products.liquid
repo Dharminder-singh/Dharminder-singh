@@ -1,6 +1,7 @@
 {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
 
 <section class="pop-up-products">
+  {% for product in settings.selected_products %}
       <div class="pop-up-product" >
         <div class="product-image">
             {% render 'product-media-gallery', product: product, variant_images: variant_images, limit: 1 %}
@@ -13,7 +14,7 @@
                 <div class="info-context">
     
                     <h2 class="product-title}" >
-                      {{ product.title | escape }}
+                      {{ product.title }}
                   </h2>
                    
                     <div class="product-price">
@@ -38,6 +39,7 @@
             </div>
         </div>
       </div>
+    {% endfor %}
   </section>
 
 <style>
