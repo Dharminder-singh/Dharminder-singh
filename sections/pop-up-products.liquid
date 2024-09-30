@@ -31,7 +31,7 @@
                 </div>
                 <div class="info-context">
                     <div class="product-title">
-                    <h2 class="product__title {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                    <h2 class="product__title " >
                     {%- unless placeholder -%}
                       {{ product.title | escape }}
                     {%- else -%}
@@ -40,7 +40,7 @@
                   </h2>
                     </div>
                     <div class="product-price">
-                    <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                   
                     {%- render 'price',
                       product: product,
                       placeholder: placeholder,
@@ -48,7 +48,6 @@
                       show_badges: true,
                       price_class: 'price--large'
                     -%}
-                  </div>
                     </div>
                     <div class="product-description">
                     </div>
@@ -60,8 +59,6 @@
             </div>
         </div>
       </div>
-      
-    </div>
   </section>
 
 </product-info>
@@ -75,10 +72,10 @@
     "groups": ["header", "footer"]
   },
   "blocks": [
+    {"type": "@app"},
     {
       "type": "product",
-      "id": "product",
-      "label": "t:sections.featured-product.settings.product.label"
+      "name": "product",
     }
   ],
   "presets": [
