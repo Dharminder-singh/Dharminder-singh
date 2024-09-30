@@ -1,14 +1,17 @@
 
 
-<div class="product-list-selector">
+<div class="product-blocks">
   <h2>Selected Products</h2>
   <ul>
-    {% for product in settings.selected_products %}
-      <li>
-        <a href="{{ product.url }}">
-          {{ product.title }}
-        </a>
-      </li>
+    {% for block in section.blocks %}
+      {% assign product = block.settings.selected_product %}
+      {% if product %}
+        <li>
+          <a href="{{ product.url }}">
+            {{ product.title }}
+          </a>
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
 </div>
@@ -20,18 +23,24 @@
 </style>
 {% schema %}
 {
-  "name": "Product List Selector",
-  "settings": [
+  "name": "Product Blocks",
+  "settings": [],
+  "blocks": [
     {
       "type": "product",
-      "id": "selected_products",
-      "label": "Select Products",
-      "info": "Choose multiple products to display."
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "selected_product",
+          "label": "Select a Product"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Product List Selector",
+      "name": "Product Blocks",
       "category": "Custom"
     }
   ]
