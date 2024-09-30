@@ -75,10 +75,19 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "pop_up_products_j7qcHY": {
+      "type": "pop-up-products",
+      "settings": {
+        "selected_products": [
+          "test-product"
+        ]
+      }
     }
   },
   "order": [
     "image_banner",
-    "featured_collection"
+    "featured_collection",
+    "pop_up_products_j7qcHY"
   ]
 }
